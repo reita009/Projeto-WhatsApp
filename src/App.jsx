@@ -9,6 +9,7 @@ import DonutLargeIcon from '@mui/icons-material/DonutLarge';
 import ChatIcon from '@mui/icons-material/Chat';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import SearchIcon from '@mui/icons-material/Search';
+import NewChat from './components/NewChat';
 
 function App() {
     const headerAvatar = 'https://www.w3schools.com/howto/img_avatar.png';
@@ -25,11 +26,21 @@ function App() {
         avatar: headerAvatar,
         name:'Julio Santana'
     })
+    const [showNewChat, setShowNewChat] = useState(false);
+
+    const handleNewChat = () =>{
+         setShowNewChat(true);
+    }
 
   return (
     <div className="app-window">
         <div className="sidebar">
-            
+            <NewChat 
+                user={user}
+                chatList={chatList}
+                show={showNewChat}
+                setShow={setShowNewChat}
+            />
             <header>
                <img className='header-avatar' src={ user.avatar } alt="" />
                <div className="header-buttons">
@@ -39,7 +50,7 @@ function App() {
                   </div>
 
                   <div className="header-btn">
-                      <ChatIcon style={{color:'#919191'}} />
+                      <ChatIcon onClick={ handleNewChat } style={{color:'#919191'}} />
                   </div>
 
                   <div className="header-btn">
